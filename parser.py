@@ -14,7 +14,7 @@ parser.add_argument('--PAD', default=1, type=int)
 # TODO 常改动参数
 parser.add_argument('--type', default='train') # 默认是训练模式, 若传递 "evaluate" 则对 dev数据集进行预测输出
 parser.add_argument('--gpu', default=3, type=int) # gpu 卡号
-parser.add_argument('--epochs', default=5, type=int) # 训练轮数
+parser.add_argument('--epochs', default=10, type=int) # 训练轮数
 parser.add_argument('--layers', default=2, type=int) # transformer层数
 parser.add_argument('--h-num', default=8, type=int) # multihead attention hidden层数
 parser.add_argument('--batch-size', default=64, type=int)

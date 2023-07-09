@@ -63,9 +63,13 @@ def main():
     if args.type == 'train':
         # 训练
         print(">>>>>>> start train")
+        if os.path.exists(args.save_file):
+            # 加载模型
+            model.load_state_dict(torch.load(args.save_file))
+            print("model loaded from last train")
         criterion = LabelSmoothing(args.tgt_vocab, padding_idx = 0, smoothing= 0.0)
         optimizer = NoamOpt(args.d_model, 1, 2000, torch.optim.Adam(model.parameters(), lr=0, betas=(0.9,0.98), eps=1e-9))
-        
+
         train(data, model, criterion, optimizer)
         print("<<<<<<< finished train")
     elif args.type == "evaluate":
@@ -82,6 +86,7 @@ def main():
             print("Error: pleas train before evaluate")
     else:
         print("Error: please select type within [train / evaluate]")
+
 
 if __name__ == "__main__":
     main()
